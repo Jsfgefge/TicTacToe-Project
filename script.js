@@ -22,44 +22,64 @@ function Gameboard() {
 
 function GameFlow(gameArr) {
   const myEnum = {
-    fisrt:   gameArr[0][0],
-    second:  gameArr[0][1],
-    third:   gameArr[0][2],
-    fourth:  gameArr[1][0],
-    fifth:   gameArr[1][1],
-    sixth:   gameArr[1][2],
+    fisrt: gameArr[0][0],
+    second: gameArr[0][1],
+    third: gameArr[0][2],
+    fourth: gameArr[1][0],
+    fifth: gameArr[1][1],
+    sixth: gameArr[1][2],
     seventh: gameArr[2][0],
-    eighth:  gameArr[2][1],
-    ninth:   gameArr[2][2]
+    eighth: gameArr[2][1],
+    ninth: gameArr[2][2]
   }
 
 
   const newMove = (x, y, z) => (gameArr[x][y] = z == 0 ? "x" : "o");
 
   const checkWin = function (isGameEnded) {
-    if(!isGameEnded){
-      if(gameArr[0][1]==gameArr[0][0]&&gameArr[0][1]==gameArr[0][2]&&gameArr[0][1]!="_"){
-        isGameEnded=true;
+    if (!isGameEnded) {
+      //FIRST -----------------------------------
+      if (gameArr[0][1] == gameArr[0][0] && gameArr[0][1] == gameArr[0][2] && gameArr[0][1] != "_") {
+        isGameEnded = true;
         return gameArr[0][1], isGameEnded;
       }
-      if(gameArr[1][0]==gameArr[0][0]&&gameArr[1][0]==gameArr[2][0]&&gameArr[1][0]!="_"){
-        isGameEnded=true;
+
+      //SECOND -----------------------------------
+      if (gameArr[1][0] == gameArr[0][0] && gameArr[1][0] == gameArr[2][0] && gameArr[1][0] != "_") {
+        isGameEnded = true;
         return gameArr[1][0], isGameEnded;
       }
-      if((gameArr[1][1]==gameArr[1][0]&&gameArr[1][1]==gameArr[1][2]&&gameArr[1][1]!="_")||(gameArr[1][1]==gameArr[0][1]&&gameArr[1][1]==gameArr[2][1]&&gameArr[1][1]!="_")){
-        isGameEnded=true;
-        return gameArr[1][1], isGameEnded;
+
+      //THIRD -----------------------------------
+      if ((gameArr[1][1] == gameArr[1][0] && gameArr[1][1] == gameArr[1][2] && gameArr[1][1] != "_")) {
+        isGameEnded = true;
+        return gameArr[1][1];
       }
-      if(gameArr[1][2]==gameArr[0][2]&&gameArr[1][2]==gameArr[2][2]&&gameArr[1][2]!="_"){
-        isGameEnded=true;
-        return gameArr[1][2], isGameEnded;
+      if ((gameArr[1][1] == gameArr[0][1] && gameArr[1][1] == gameArr[2][1] && gameArr[1][1] != "_")) {
+        isGameEnded = true;
+        return gameArr[1][1];
       }
-      if(gameArr[2][1]==gameArr[2][0]&&gameArr[2][1]==gameArr[2][2]&&gameArr[2][1]!="_"){
-        isGameEnded=true;
-        return gameArr[2][1], isGameEnded;
+      if ((gameArr[1][1] == gameArr[0][0] && gameArr[1][1] == gameArr[2][2] && gameArr[1][1] != "_")) {
+        isGameEnded = true;
+        return gameArr[1][1];
       }
-      else
-      {
+      if ((gameArr[1][1] == gameArr[0][2] && gameArr[1][1] == gameArr[2][0] && gameArr[1][1] != "_")) {
+        isGameEnded = true;
+        return gameArr[1][1];
+      }
+
+      //FOURTH -----------------------------------
+      if (gameArr[1][2] == gameArr[0][2] && gameArr[1][2] == gameArr[2][2] && gameArr[1][2] != "_") {
+        isGameEnded = true;
+        return gameArr[1][2];
+      }
+
+      //FIFTH -----------------------------------
+      if (gameArr[2][1] == gameArr[2][0] && gameArr[2][1] == gameArr[2][2] && gameArr[2][1] != "_") {
+        isGameEnded = true;
+        return gameArr[2][1];
+      }
+      else {
         return "no winner yet";
       }
     }
@@ -68,20 +88,17 @@ function GameFlow(gameArr) {
   return { newMove, gameArr, checkWin };
 }
 
-function NewPlayer() {}
+function NewPlayer() { }
 
 //testing-------------------------
 const newGame = Gameboard();
 const gameFlow = GameFlow(newGame.gameState);
 
-gameFlow.newMove(1, 1, 1);
-gameFlow.newMove(1, 2, 0);
-gameFlow.newMove(2, 1, 0);
-gameFlow.newMove(1, 0, 1);
-gameFlow.newMove(0, 1, 1);
-gameFlow.newMove(2, 0, 1);
+gameFlow.newMove(1, 1, 0);
+gameFlow.newMove(0, 0, 1);
 gameFlow.newMove(2, 2, 1);
-gameFlow.newMove(2, 1, 1);
+gameFlow.newMove(0, 2, 0);
+gameFlow.newMove(2, 0, 0);
 
 
 // newGame.newMove(1,1,1);
